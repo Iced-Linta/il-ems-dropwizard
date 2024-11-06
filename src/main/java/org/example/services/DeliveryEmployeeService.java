@@ -18,47 +18,58 @@ public class DeliveryEmployeeService {
     DeliveryEmployeeDao deliveryEmployeeDao;
     DeliveryEmployeeValidator deliveryEmployeeValidator;
 
-    public DeliveryEmployeeService(final DeliveryEmployeeDao deliveryEmployeeDao, final DeliveryEmployeeValidator deliveryEmployeeValidator) {
-    this.deliveryEmployeeDao = new DeliveryEmployeeDao();
-    this.deliveryEmployeeValidator = new DeliveryEmployeeValidator();
+    public DeliveryEmployeeService(
+            final DeliveryEmployeeDao deliveryEmployeeDao,
+            final DeliveryEmployeeValidator deliveryEmployeeValidator) {
+        this.deliveryEmployeeDao = deliveryEmployeeDao;
+        this.deliveryEmployeeValidator = deliveryEmployeeValidator;
     }
 
-    public List<DeliveryEmployeeResponse> getAllDeliveryEmployees() throws SQLException {
+    public List<DeliveryEmployeeResponse> getAllDeliveryEmployees()
+            throws SQLException {
         return DeliveryEmployeeMapper.mapDeliveryEmployeeListToDeliveryEmployeeResponseList(
                 deliveryEmployeeDao.getAllDeliveryEmployees());
     }
 
     public DeliveryEmployeeResponse getDeliveryEmployeeById(final int id)
             throws SQLException, DoesNotExistException {
-        DeliveryEmployee deliveryEmployee = deliveryEmployeeDao.getDeliveryEmployeeById(id);
+        DeliveryEmployee deliveryEmployee =
+                deliveryEmployeeDao.getDeliveryEmployeeById(id);
 
         if (deliveryEmployee == null) {
-            throw new DoesNotExistException(Entity.DELIVERYEMPLOYEE);
+            throw new DoesNotExistException(Entity.DELIVERY_EMPLOYEE);
         }
 
-        return DeliveryEmployeeMapper.mapDeliveryEmployeeToDeliveryEmployeeResponse(deliveryEmployee);
+        return DeliveryEmployeeMapper.mapDeliveryEmployeeToDeliveryEmployeeResponse(
+                deliveryEmployee);
     }
 
-    public int createDeliveryEmployee(final DeliveryEmployeeRequest deliveryEmployeeRequest)
-        throws FailedToCreateException, SQLException, InvalidException {
-        deliveryEmployeeValidator.validateDeliveryEmployee(deliveryEmployeeRequest);
+    public int createDeliveryEmployee(
+            final DeliveryEmployeeRequest deliveryEmployeeRequest)
+            throws FailedToCreateException, SQLException, InvalidException {
+        deliveryEmployeeValidator.validateDeliveryEmployee(
+                deliveryEmployeeRequest);
 
-        int id = deliveryEmployeeDao.createDeliveryEmployee(deliveryEmployeeRequest);
+        final int id = deliveryEmployeeDao.createDeliveryEmployee(
+                deliveryEmployeeRequest);
 
         if (id == -1) {
-            throw new FailedToCreateException(Entity.DELIVERYEMPLOYEE);
+            throw new FailedToCreateException(Entity.DELIVERY_EMPLOYEE);
         }
 
         return id;
     }
 
-    public void updateDeliveryEmployee(final int id, final DeliveryEmployeeRequest deliveryEmployeeRequest)
-        throws InvalidException, SQLException, DoesNotExistException {
-        deliveryEmployeeValidator.validateDeliveryEmployee(deliveryEmployeeRequest);
-        DeliveryEmployee deliveryEmployeeToUpdate = deliveryEmployeeDao.getDeliveryEmployeeById(id);
+    public void updateDeliveryEmployee(final int id,
+                                       final DeliveryEmployeeRequest deliveryEmployeeRequest)
+            throws InvalidException, SQLException, DoesNotExistException {
+        deliveryEmployeeValidator.validateDeliveryEmployee(
+                deliveryEmployeeRequest);
+        DeliveryEmployee deliveryEmployeeToUpdate =
+                deliveryEmployeeDao.getDeliveryEmployeeById(id);
 
         if (deliveryEmployeeToUpdate == null) {
-            throw new DoesNotExistException(Entity.DELIVERYEMPLOYEE);
+            throw new DoesNotExistException(Entity.DELIVERY_EMPLOYEE);
         }
 
         deliveryEmployeeDao.updateDeliveryEmployee(id, deliveryEmployeeRequest);
@@ -69,7 +80,7 @@ public class DeliveryEmployeeService {
         DeliveryEmployee deliveryEmployeeToDelete =
                 deliveryEmployeeDao.getDeliveryEmployeeById(id);
         if (deliveryEmployeeToDelete == null) {
-            throw new DoesNotExistException(Entity.DELIVERYEMPLOYEE);
+            throw new DoesNotExistException(Entity.DELIVERY_EMPLOYEE);
         }
 
         deliveryEmployeeDao.deleteDeliveryEmployee(id);

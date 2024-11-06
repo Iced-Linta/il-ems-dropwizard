@@ -4,11 +4,9 @@ import io.swagger.annotations.Api;
 import org.example.exceptions.DoesNotExistException;
 import org.example.exceptions.FailedToCreateException;
 import org.example.exceptions.InvalidException;
-import org.example.models.DeliveryEmployee;
 import org.example.models.DeliveryEmployeeRequest;
 import org.example.services.DeliveryEmployeeService;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,6 +22,7 @@ import java.sql.SQLException;
 @Path("/api/delivery-employee")
 public class DeliveryEmployeeController {
     private final DeliveryEmployeeService deliveryEmployeeService;
+
     public DeliveryEmployeeController(
             final DeliveryEmployeeService deliveryEmployeeService
     ) {
@@ -43,6 +42,7 @@ public class DeliveryEmployeeController {
             ).build();
         }
     }
+
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -63,10 +63,12 @@ public class DeliveryEmployeeController {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createDeliveryEmployee(final DeliveryEmployeeRequest deliveryEmployeeRequest) {
+    public Response createDeliveryEmployee(
+            final DeliveryEmployeeRequest deliveryEmployeeRequest) {
         try {
             return Response.ok()
-                    .entity(deliveryEmployeeService.createDeliveryEmployee(deliveryEmployeeRequest))
+                    .entity(deliveryEmployeeService.createDeliveryEmployee(
+                            deliveryEmployeeRequest))
                     .build();
         } catch (SQLException | FailedToCreateException e) {
             return Response.serverError().entity(e.getMessage()).build();
@@ -84,7 +86,8 @@ public class DeliveryEmployeeController {
             final DeliveryEmployeeRequest deliveryEmployeeRequest
     ) {
         try {
-            deliveryEmployeeService.updateDeliveryEmployee(id, deliveryEmployeeRequest);
+            deliveryEmployeeService.updateDeliveryEmployee(id,
+                    deliveryEmployeeRequest);
             return Response.noContent().build();
         } catch (InvalidException e) {
             return Response.status(Response.Status.BAD_REQUEST)

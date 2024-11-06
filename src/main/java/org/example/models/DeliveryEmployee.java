@@ -21,7 +21,7 @@ public class DeliveryEmployee {
         return deliveryEmployeeId;
     }
 
-    public void setDeliveryEmployeeId(int deliveryEmployeeId) {
+    public void setDeliveryEmployeeId(final int deliveryEmployeeId) {
         this.deliveryEmployeeId = deliveryEmployeeId;
     }
 
@@ -29,7 +29,7 @@ public class DeliveryEmployee {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -37,7 +37,7 @@ public class DeliveryEmployee {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(final double salary) {
         this.salary = salary;
     }
 
@@ -45,7 +45,7 @@ public class DeliveryEmployee {
         return bankAccountNumber;
     }
 
-    public void setBankAccountNumber(String bankAccountNumber) {
+    public void setBankAccountNumber(final String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
     }
 
@@ -53,7 +53,8 @@ public class DeliveryEmployee {
         return nationalInsuranceNumber;
     }
 
-    public void setNationalInsuranceNumber(String nationalInsuranceNumber) {
+    public void setNationalInsuranceNumber(final String
+                                                   nationalInsuranceNumber) {
         this.nationalInsuranceNumber = nationalInsuranceNumber;
     }
 }

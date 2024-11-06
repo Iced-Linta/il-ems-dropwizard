@@ -61,56 +61,62 @@ public class DeliveryEmployeeDao {
 
     public int createDeliveryEmployee(DeliveryEmployeeRequest deliveryEmployee)
             throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
+        try (Connection connection = DatabaseConnector.getConnection()) {
 
-        String insertStatement =
-                "INSERT INTO deliveryEmployee (name, salary, bankAccountNumber, nationalInsuranceNumber) VALUES (?, ?, ?, ?)";
-        PreparedStatement statement = c.prepareStatement(insertStatement,
-                Statement.RETURN_GENERATED_KEYS);
+            String insertStatement =
+                    "INSERT INTO deliveryEmployee (name, salary, bankAccountNumber, nationalInsuranceNumber) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(insertStatement,
+                    Statement.RETURN_GENERATED_KEYS);
 
-        statement.setString(1, deliveryEmployee.getName());
-        statement.setDouble(2, deliveryEmployee.getSalary());
-        statement.setString(3, deliveryEmployee.getBankAccountNumber());
-        statement.setString(4, deliveryEmployee.getNationalInsuranceNumber());
+            statement.setString(1, deliveryEmployee.getName());
+            statement.setDouble(2, deliveryEmployee.getSalary());
+            statement.setString(3, deliveryEmployee.getBankAccountNumber());
+            statement.setString(4,
+                    deliveryEmployee.getNationalInsuranceNumber());
 
-        statement.executeUpdate();
-        ResultSet resultSet = statement.getGeneratedKeys();
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
 
-        if (resultSet.next()) {
-            return resultSet.getInt(1);
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
         }
-
-        return -1;
+            return -1;
     }
 
     public void updateDeliveryEmployee(final int id,
                                        final DeliveryEmployeeRequest deliveryEmployeeRequest)
             throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
+        try (Connection connection = DatabaseConnector.getConnection()) {
 
-        String updateStatement =
-                "UPDATE deliveryEmployee SET name = ?, salary = ?, bankAccountNumber = ?, nationalInsuranceNumber = ? WHERE deliveryEmployeeId = ?";
-        PreparedStatement statement = c.prepareStatement(updateStatement);
+            String updateStatement =
+                    "UPDATE deliveryEmployee SET name = ?, salary = ?, bankAccountNumber = ?, nationalInsuranceNumber = ? WHERE deliveryEmployeeId = ?";
+            PreparedStatement statement =
+                    connection.prepareStatement(updateStatement);
 
-        statement.setString(1, deliveryEmployeeRequest.getName());
-        statement.setDouble(2, deliveryEmployeeRequest.getSalary());
-        statement.setString(3, deliveryEmployeeRequest.getBankAccountNumber());
-        statement.setString(4,
-                deliveryEmployeeRequest.getNationalInsuranceNumber());
-        statement.setInt(5, id);
+            statement.setString(1, deliveryEmployeeRequest.getName());
+            statement.setDouble(2, deliveryEmployeeRequest.getSalary());
+            statement.setString(3,
+                    deliveryEmployeeRequest.getBankAccountNumber());
+            statement.setString(4,
+                    deliveryEmployeeRequest.getNationalInsuranceNumber());
+            statement.setInt(5, id);
 
-        statement.executeUpdate();
+            statement.executeUpdate();
+        }
     }
 
     public void deleteDeliveryEmployee(final int id) throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
+        try (Connection connection = DatabaseConnector.getConnection()) {
 
-        String deleteStatement =
-                "DELETE FROM deliveryEmployee WHERE deliveryEmployeeId = ?";
-        PreparedStatement statement = c.prepareStatement(deleteStatement);
+            String deleteStatement =
+                    "DELETE FROM deliveryEmployee WHERE deliveryEmployeeId = ?";
+            PreparedStatement statement =
+                    connection.prepareStatement(deleteStatement);
 
-        statement.setInt(1, id);
+            statement.setInt(1, id);
 
-        statement.executeUpdate();
+            statement.executeUpdate();
+        }
     }
 }
