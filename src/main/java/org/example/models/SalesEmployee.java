@@ -1,0 +1,80 @@
+package org.example.models;
+
+public class SalesEmployee {
+    private int salesEmployeeId;
+    private String firstName;
+    private String lastName;
+    private double salary;
+    private String bankAccountNo;
+    private float commissionRate;
+    private String nationalInsuranceNo;
+
+    public SalesEmployee(int salesEmployeeId, String firstName, String lastName,
+                         double salary, String bankAccountNo,
+                         float commissionRate,
+                         String nationalInsuranceNo) {
+        this.salesEmployeeId = salesEmployeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.bankAccountNo = bankAccountNo;
+        this.commissionRate = commissionRate;
+        this.nationalInsuranceNo = nationalInsuranceNo;
+    }
+
+    public int getSalesEmployeeId() {
+        return salesEmployeeId;
+    }
+
+    public void setSalesEmployeeId(int salesEmployeeId) {
+        this.salesEmployeeId = salesEmployeeId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getBankAccountNo() {
+        return bankAccountNo;
+    }
+
+    public void setBankAccountNo(String bankAccountNo) {
+        this.bankAccountNo = bankAccountNo;
+    }
+
+    public float getCommissionRate() {
+        return commissionRate;
+    }
+
+    public void setCommissionRate(float commissionRate) {
+        this.commissionRate = commissionRate;
+    }
+
+    public String getNationalInsuranceNo() {
+        return nationalInsuranceNo;
+    }
+
+    public void setNationalInsuranceNo(String nationalInsuranceNo) {
+        this.nationalInsuranceNo = nationalInsuranceNo;
+    }
+}
