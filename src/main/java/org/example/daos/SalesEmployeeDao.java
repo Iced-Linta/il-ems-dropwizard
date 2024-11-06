@@ -35,10 +35,9 @@ public class SalesEmployeeDao {
         List<SalesEmployee> salesEmployees = new ArrayList<>();
 
         try (Connection connection = DatabaseConnector.getConnection()) {
-            Statement statement = connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM salesEmployees;");
 
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM salesEmployees;");
+            ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 SalesEmployee salesEmployee = new SalesEmployee(
@@ -128,9 +127,12 @@ public class SalesEmployeeDao {
             throws SQLException {
         try (Connection c = DatabaseConnector.getConnection()) {
             String updateStatement = "UPDATE salesEmployees "
-                    + "SET firstName = ?, lastName = ? "
-                    +
-                    ",salary =?, bankAccountNumber =?, commissionRate=?, nationalInsuranceNumber=? " +
+                    + "SET firstName = ?," +
+                    "lastName = ? " +
+                    ",salary =?," +
+                    "bankAccountNumber =?," +
+                    "commissionRate=?," +
+                    "nationalInsuranceNumber=?" +
                     "WHERE salesEmployeeId = ?;";
             PreparedStatement st = c.prepareStatement(updateStatement);
             st.setString(Indexes.firstName.getIndex(),
