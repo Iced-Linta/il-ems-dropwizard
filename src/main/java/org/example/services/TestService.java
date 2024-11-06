@@ -7,9 +7,11 @@ import java.util.List;
 
 public class TestService {
     TestDao testDao;
+
     public TestService(final TestDao testDao) {
         this.testDao = testDao;
     }
+
     public List<String> testConnection() throws SQLException {
         return testDao.testConnection();
     }
