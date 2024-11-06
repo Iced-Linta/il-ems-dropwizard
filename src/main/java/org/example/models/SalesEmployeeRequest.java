@@ -29,47 +29,23 @@ public class SalesEmployeeRequest {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
     public String getBankAccountNo() {
         return bankAccountNo;
-    }
-
-    public void setBankAccountNo(String bankAccountNo) {
-        this.bankAccountNo = bankAccountNo;
     }
 
     public float getCommissionRate() {
         return commissionRate;
     }
 
-    public void setCommissionRate(float commissionRate) {
-        this.commissionRate = commissionRate;
-    }
-
     public String getNationalInsuranceNo() {
         return nationalInsuranceNo;
-    }
-
-    public void setNationalInsuranceNo(String nationalInsuranceNo) {
-        this.nationalInsuranceNo = nationalInsuranceNo;
     }
 }

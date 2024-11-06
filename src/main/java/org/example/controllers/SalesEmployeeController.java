@@ -32,7 +32,7 @@ public class SalesEmployeeController {
     public Response getAllSalesEmployees() {
         try {
             return Response.ok().entity(
-                    salesEmployeeService.getAllSalesEmployees()
+                    salesEmployeeService.getSalesEmployees()
             ).build();
         } catch (SQLException e) {
             return Response.serverError().build();
@@ -59,7 +59,7 @@ public class SalesEmployeeController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSalesEmployeeById(final @PathParam("id") Integer id) {
+    public Response getSalesEmployeeById(final @PathParam("id") int id) {
         try {
             return Response.ok().entity(
                     salesEmployeeService.getSalesEmployee(id)
@@ -75,7 +75,7 @@ public class SalesEmployeeController {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteSalesEmployee(final @PathParam("id") Integer id) {
+    public Response deleteSalesEmployee(final @PathParam("id") int id) {
         try {
             salesEmployeeService.deleteSalesEmployee(id);
             return Response.noContent().build();
@@ -91,7 +91,7 @@ public class SalesEmployeeController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateSalesEmployee(
-            final @PathParam("id") Integer id,
+            final @PathParam("id") int id,
             final SalesEmployeeRequest salesEmployee
     ) {
         try {

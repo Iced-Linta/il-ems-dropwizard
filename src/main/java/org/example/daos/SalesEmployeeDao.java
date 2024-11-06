@@ -12,15 +12,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalesEmployeeDao {
-    private final int firstNameIndex = 1;
-    private final int lastNameIndex = 2;
-    private final int salaryIndex = 3;
-    private final int bankAccountIndex = 4;
-    private final int commissionRateIndex = 5;
-    private final int nationalInsuranceNumberIndex = 6;
-    private final int updateIdIndex = 7;
 
-    public List<SalesEmployee> getAllSalesEmployees() throws SQLException {
+    private enum Indexes {
+        firstName(1),
+        lastName(2),
+        salary(3),
+        bankAccount(4),
+        commissionRate(5),
+        nationalInsuranceNumber(6),
+        updateId(7);
+
+        private final int index;
+        Indexes(final int index) {
+            this.index = index;
+        }
+        public int getIndex() {
+            return this.index;
+        }
+    }
+
+    public List<SalesEmployee> getSalesEmployees() throws SQLException {
         List<SalesEmployee> salesEmployees = new ArrayList<>();
 
         try (Connection connection = DatabaseConnector.getConnection()) {
@@ -82,27 +93,30 @@ public class SalesEmployeeDao {
             final SalesEmployeeRequest salesEmployeeRequest
     )
             throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
-        String insertStatement = "INSERT INTO salesEmployees"
-                + " (firstName,lastName,salary,bankAccountNumber,"
-                + " commissionRate,nationalInsuranceNumber)"
-                + " VALUES(?,?,?,?,?,?);";
-        PreparedStatement st = c.prepareStatement(
-                insertStatement, Statement.RETURN_GENERATED_KEYS);
-        st.setString(firstNameIndex,
-                salesEmployeeRequest.getFirstName());
-        st.setString(lastNameIndex, salesEmployeeRequest.getLastName());
-        st.setDouble(salaryIndex, salesEmployeeRequest.getSalary());
-        st.setString(bankAccountIndex,
-                salesEmployeeRequest.getBankAccountNo());
-        st.setDouble(commissionRateIndex,
-                salesEmployeeRequest.getCommissionRate());
-        st.setString(nationalInsuranceNumberIndex,
-                salesEmployeeRequest.getNationalInsuranceNo());
-        st.executeUpdate();
-        ResultSet rs = st.getGeneratedKeys();
-        if (rs.next()) {
-            return rs.getInt(1);
+        try (Connection c = DatabaseConnector.getConnection()) {
+            String insertStatement = "INSERT INTO salesEmployees"
+                    + " (firstName,lastName,salary,bankAccountNumber,"
+                    + " commissionRate,nationalInsuranceNumber)"
+                    + " VALUES(?,?,?,?,?,?);";
+            PreparedStatement st = c.prepareStatement(
+                    insertStatement, Statement.RETURN_GENERATED_KEYS);
+            st.setString(Indexes.firstName.getIndex(),
+                    salesEmployeeRequest.getFirstName());
+            st.setString(Indexes.lastName.getIndex(),
+                    salesEmployeeRequest.getLastName());
+            st.setDouble(Indexes.salary.getIndex(),
+                    salesEmployeeRequest.getSalary());
+            st.setString(Indexes.bankAccount.getIndex(),
+                    salesEmployeeRequest.getBankAccountNo());
+            st.setDouble(Indexes.commissionRate.getIndex(),
+                    salesEmployeeRequest.getCommissionRate());
+            st.setString(Indexes.nationalInsuranceNumber.getIndex(),
+                    salesEmployeeRequest.getNationalInsuranceNo());
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
         }
 
         return -1;
@@ -112,32 +126,39 @@ public class SalesEmployeeDao {
             final int id,
             final SalesEmployeeRequest salesEmployeeRequest)
             throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
-        String updateStatement = "UPDATE salesEmployees "
-                + "SET firstName = ?, lastName = ? "
-                + ",salary =?, bankAccountNumber =?, commissionRate=?, nationalInsuranceNumber=? " +
-                "WHERE salesEmployeeId = ?;";
-        PreparedStatement st = c.prepareStatement(updateStatement);
-        st.setString(firstNameIndex, salesEmployeeRequest.getFirstName());
-        st.setString(lastNameIndex, salesEmployeeRequest.getLastName());
-        st.setDouble(salaryIndex, salesEmployeeRequest.getSalary());
-        st.setString(bankAccountIndex,
-                salesEmployeeRequest.getBankAccountNo());
-        st.setDouble(commissionRateIndex,
-                salesEmployeeRequest.getCommissionRate());
-        st.setString(nationalInsuranceNumberIndex,
-                salesEmployeeRequest.getNationalInsuranceNo());
-        st.setInt(updateIdIndex, id);
+        try (Connection c = DatabaseConnector.getConnection()) {
+            String updateStatement = "UPDATE salesEmployees "
+                    + "SET firstName = ?, lastName = ? "
+                    +
+                    ",salary =?, bankAccountNumber =?, commissionRate=?, nationalInsuranceNumber=? " +
+                    "WHERE salesEmployeeId = ?;";
+            PreparedStatement st = c.prepareStatement(updateStatement);
+            st.setString(Indexes.firstName.getIndex(),
+                    salesEmployeeRequest.getFirstName());
+            st.setString(Indexes.lastName.getIndex(),
+                    salesEmployeeRequest.getLastName());
+            st.setDouble(Indexes.salary.getIndex(),
+                    salesEmployeeRequest.getSalary());
+            st.setString(Indexes.bankAccount.getIndex(),
+                    salesEmployeeRequest.getBankAccountNo());
+            st.setDouble(Indexes.commissionRate.getIndex(),
+                    salesEmployeeRequest.getCommissionRate());
+            st.setString(Indexes.nationalInsuranceNumber.getIndex(),
+                    salesEmployeeRequest.getNationalInsuranceNo());
+            st.setInt(Indexes.updateId.getIndex(), id);
 
-        st.executeUpdate();
+            st.executeUpdate();
+
+        }
     }
 
     public void deleteSalesEmployee(final int id) throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
-        String deleteStatement = "DELETE FROM salesEmployees"
-                + " WHERE salesEmployeeId = ?;";
-        PreparedStatement st = c.prepareStatement(deleteStatement);
-        st.setInt(1, id);
-        st.executeUpdate();
+        try (Connection c = DatabaseConnector.getConnection()) {
+            String deleteStatement = "DELETE FROM salesEmployees"
+                    + " WHERE salesEmployeeId = ?;";
+            PreparedStatement st = c.prepareStatement(deleteStatement);
+            st.setInt(1, id);
+            st.executeUpdate();
+        }
     }
 }

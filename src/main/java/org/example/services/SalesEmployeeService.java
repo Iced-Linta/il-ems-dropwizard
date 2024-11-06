@@ -16,9 +16,9 @@ public class SalesEmployeeService {
         this.salesEmployeeDao = salesEmployeeDao;
     }
 
-    public List<SalesEmployee> getAllSalesEmployees()
+    public List<SalesEmployee> getSalesEmployees()
             throws SQLException {
-        return salesEmployeeDao.getAllSalesEmployees();
+        return salesEmployeeDao.getSalesEmployees();
     }
 
     public SalesEmployee getSalesEmployee(int id) throws SQLException, DoesNotExistException {
