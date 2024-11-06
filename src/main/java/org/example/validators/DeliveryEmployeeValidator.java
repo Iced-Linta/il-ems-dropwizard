@@ -29,18 +29,24 @@ public class DeliveryEmployeeValidator {
                     "National Insurance number greater than 9 characters.");
         }
 
-        if (deliveryEmployeeRequest.getName().isEmpty()) {
+
+        if (deliveryEmployeeRequest.getName().isEmpty() || deliveryEmployeeRequest.getName() == null) {
+            throw new InvalidException(Entity.DELIVERY_EMPLOYEE,
+                    "Name greater is blank. Please enter a name.");
+        }
+
+        if (deliveryEmployeeRequest.getSalary() == null) {
             throw new InvalidException(Entity.DELIVERY_EMPLOYEE,
                     "Name greater is blank. Please enter a name.");
         }
 
 
-        if (deliveryEmployeeRequest.getBankAccountNumber().isEmpty()) {
+        if (deliveryEmployeeRequest.getBankAccountNumber().isEmpty() || deliveryEmployeeRequest.getBankAccountNumber() == null) {
             throw new InvalidException(Entity.DELIVERY_EMPLOYEE,
                     "Bank account number is blank. Please enter a bank account number.");
         }
 
-        if (deliveryEmployeeRequest.getNationalInsuranceNumber().isEmpty()) {
+        if (deliveryEmployeeRequest.getNationalInsuranceNumber().isEmpty() || deliveryEmployeeRequest.getNationalInsuranceNumber() == null) {
             throw new InvalidException(Entity.DELIVERY_EMPLOYEE,
                     "National Insurance number is blank. Please enter a national insurance number.");
         }
