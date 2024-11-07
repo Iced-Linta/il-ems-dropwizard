@@ -33,7 +33,7 @@ public class ClientDao {
         return clients;
     }
 
-    public Client getClientById(int id)
+    public Client getClientById(final int id)
             throws SQLException {
         try (Connection connection = DatabaseConnector.getConnection()) {
             String query =
@@ -53,7 +53,7 @@ public class ClientDao {
         return null;
     }
 
-    public int createClient(ClientRequest client)
+    public int createClient(final ClientRequest client)
             throws SQLException {
         try (Connection connection = DatabaseConnector.getConnection()) {
 

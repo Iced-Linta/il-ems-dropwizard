@@ -9,9 +9,10 @@ public class SalesEmployee {
     private float commissionRate;
     private String nationalInsuranceNo;
 
-    public SalesEmployee(int salesEmployeeId, String firstName, String lastName,
-                         double salary, String bankAccountNo,
-                         float commissionRate,
+    public SalesEmployee(final int salesEmployeeId, final String firstName,
+                         final String lastName,
+                         final double salary, final String bankAccountNo,
+                         final float commissionRate,
                          String nationalInsuranceNo) {
         this.salesEmployeeId = salesEmployeeId;
         this.firstName = firstName;
