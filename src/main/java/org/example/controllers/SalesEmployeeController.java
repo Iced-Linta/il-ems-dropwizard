@@ -3,11 +3,9 @@ package org.example.controllers;
 import io.swagger.annotations.Api;
 import org.example.exceptions.DoesNotExistException;
 import org.example.exceptions.FailedToCreateException;
-import org.example.models.SalesEmployee;
 import org.example.models.SalesEmployeeRequest;
 import org.example.services.SalesEmployeeService;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,6 +21,7 @@ import java.sql.SQLException;
 @Path("/api/sales-employee")
 public class SalesEmployeeController {
     private final SalesEmployeeService salesEmployeeService;
+
     public SalesEmployeeController(SalesEmployeeService salesEmployeeService) {
         this.salesEmployeeService = salesEmployeeService;
     }

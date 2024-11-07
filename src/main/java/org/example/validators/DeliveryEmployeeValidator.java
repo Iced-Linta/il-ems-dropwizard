@@ -29,16 +29,15 @@ public class DeliveryEmployeeValidator {
                     "National Insurance number greater than 9 characters.");
         }
 
-
         if (deliveryEmployeeRequest.getName().isEmpty() ||
                 deliveryEmployeeRequest.getName() == null) {
             throw new InvalidException(Entity.DELIVERY_EMPLOYEE,
-                    "Name greater is blank. Please enter a name.");
+                    "Name is blank. Please enter a name.");
         }
 
         if (deliveryEmployeeRequest.getSalary() == null) {
             throw new InvalidException(Entity.DELIVERY_EMPLOYEE,
-                    "Name greater is blank. Please enter a name.");
+                    "Salary is blank. Please enter a salary.");
         }
 
 
