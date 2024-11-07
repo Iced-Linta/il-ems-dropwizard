@@ -15,13 +15,13 @@ public class ProjectRequest {
     private Date finishDate;
     @JsonCreator
     public ProjectRequest(
-            @JsonProperty("name") final String name,
-            @JsonProperty("value") final float value,
-            @JsonProperty("techLeadId") final int techLeadId,
-            @JsonProperty("clientId") final int clientId,
-            @JsonProperty("salesEmployeeId") final int salesEmployeeId,
-            @JsonProperty("startDate") final Date startDate,
-            @JsonProperty("finishDate") final Date finishDate)
+            final @JsonProperty("name") String name,
+            final @JsonProperty("value") float value,
+            final @JsonProperty("techLeadId") int techLeadId,
+            final @JsonProperty("clientId") int clientId,
+            final @JsonProperty("salesEmployeeId") int salesEmployeeId,
+            final @JsonProperty("startDate") Date startDate,
+            final @JsonProperty("finishDate") Date finishDate)
     {
         this.name = name;
         this.value = value;

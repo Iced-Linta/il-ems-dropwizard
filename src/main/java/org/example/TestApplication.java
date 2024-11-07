@@ -9,6 +9,7 @@ import org.example.controllers.SalesEmployeeController;
 import org.example.controllers.DeliveryEmployeeController;
 import org.example.controllers.ProjectController;
 import org.example.controllers.TestController;
+import org.example.daos.SalesEmployeeDao;
 import org.example.daos.DeliveryEmployeeDao;
 import org.example.daos.ProjectDao;
 import org.example.daos.TestDao;
