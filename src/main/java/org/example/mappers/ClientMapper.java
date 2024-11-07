@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class ClientMapper {
     public static ClientResponse mapClientToClientResponse(
             final Client client) {
-        return new ClientResponse(client.getClientID(), client.getName());
+        return new ClientResponse(client.getClientId(), client.getName());
     }
 
     public static List<ClientResponse> mapClientListToClientResponseList(

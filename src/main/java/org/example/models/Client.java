@@ -1,20 +1,16 @@
 package org.example.models;
 
 public class Client {
-    private int clientID;
+    private final int clientId;
     private String name;
 
-    public Client(final int clientID, final String name) {
-        this.clientID = clientID;
+    public Client(final int clientId, final String name) {
+        this.clientId = clientId;
         this.name = name;
     }
 
-    public int getClientID() {
-        return clientID;
-    }
-
-    public void setClientID(final int clientID) {
-        this.clientID = clientID;
+    public int getClientId() {
+        return clientId;
     }
 
     public String getName() {

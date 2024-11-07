@@ -67,6 +67,7 @@ public class ClientController {
             final ClientRequest clientRequest) {
         try {
             return Response.ok()
+                    .status(Response.Status.CREATED)
                     .entity(clientService.createClient(
                             clientRequest))
                     .build();

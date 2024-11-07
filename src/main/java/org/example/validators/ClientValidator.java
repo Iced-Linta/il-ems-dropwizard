@@ -18,7 +18,7 @@ public class ClientValidator {
         if (clientRequest.getName().isEmpty() ||
                 clientRequest.getName() == null) {
             throw new InvalidException(Entity.CLIENT,
-                    "Name greater is blank. Please enter a name.");
+                    "Name is blank. Please enter a name.");
         }
     }
 }
