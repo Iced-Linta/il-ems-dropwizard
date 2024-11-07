@@ -65,8 +65,9 @@ public class DeliveryEmployeeDao {
 
             String insertStatement =
                     "INSERT INTO deliveryEmployee (name, salary, bankAccountNumber, nationalInsuranceNumber) VALUES (?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(insertStatement,
-                    Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement =
+                    connection.prepareStatement(insertStatement,
+                            Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1, deliveryEmployee.getName());
             statement.setDouble(2, deliveryEmployee.getSalary());
@@ -81,7 +82,7 @@ public class DeliveryEmployeeDao {
                 return resultSet.getInt(1);
             }
         }
-            return -1;
+        return -1;
     }
 
     public void updateDeliveryEmployee(final int id,
