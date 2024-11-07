@@ -16,6 +16,10 @@ public class ProjectService {
         this.projectDao = projectDao;
     }
 
+    public void checkProjectExists(Project project) throws DoesNotExistException {
+        if (project == null) { throw new DoesNotExistException(Entity.PROJECT); }
+    }
+
     public List<Project> getProjects()
             throws SQLException {
         return projectDao.getProjects();
@@ -23,27 +27,25 @@ public class ProjectService {
 
     public Project getProject(int id) throws SQLException,
             DoesNotExistException {
-        Project salesEmployee = projectDao.getProjectById(id);
-        if (salesEmployee == null) { throw new DoesNotExistException(Entity.PROJECT); }
-        return salesEmployee;
+        Project project = projectDao.getProjectById(id);
+        if (project == null) { throw new DoesNotExistException(Entity.PROJECT); }
+        return project;
     }
 
     public int createProject(ProjectRequest projectRequest)
             throws SQLException, FailedToCreateException {
-        int salesEmployeeId = projectDao.createProject(projectRequest);
-        if (salesEmployeeId == -1) { throw new FailedToCreateException(Entity.PROJECT); }
-        return salesEmployeeId;
+        int project = projectDao.createProject(projectRequest);
+        if (project == -1) { throw new FailedToCreateException(Entity.PROJECT); }
+        return project;
     }
 
     public void deleteProject(int id) throws SQLException, DoesNotExistException {
-        Project salesEmployee = projectDao.getProjectById(id);
-        if (salesEmployee == null) { throw new DoesNotExistException(Entity.PROJECT); }
+        checkProjectExists(projectDao.getProjectById(id));
         projectDao.deleteProject(id);
     }
 
     public void updateProject(ProjectRequest projectRequest, int id) throws SQLException, DoesNotExistException {
-        Project salesEmployee = projectDao.getProjectById(id);
-        if (salesEmployee == null) { throw new DoesNotExistException(Entity.PROJECT); }
-        projectDao.updateSalesEmployee(id, projectRequest);
+        checkProjectExists(projectDao.getProjectById(id));
+        projectDao.updateProject(id, projectRequest);
     }
 }

@@ -7,7 +7,7 @@ CREATE TABLE project (
     salesEmployeeId INT NOT NULL,
     startDate DateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     finishDate DateTime,
-    commissionRate DECIMAL(3,2) NOT NULL,
     PRIMARY KEY(projectId),
-    FOREIGN KEY (salesEmployeeId) REFERENCES salesEmployees(salesEmployeeId)
+    FOREIGN KEY (salesEmployeeId) REFERENCES salesEmployees(salesEmployeeId),
+    FOREIGN KEY (techLeadId) REFERENCES deliveryEmployee(deliveryEmployeeId)
 );

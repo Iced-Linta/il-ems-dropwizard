@@ -8,32 +8,28 @@ import java.sql.Date;
 public class ProjectRequest {
     private String name;
     private float value;
-    private int techleadId;
+    private int techLeadId;
     private int clientId;
     private int salesEmployeeId;
     private Date startDate;
     private Date finishDate;
-    private float commissionRate;
     @JsonCreator
     public ProjectRequest(
-            @JsonProperty("projectId") final int projectId,
             @JsonProperty("name") final String name,
             @JsonProperty("value") final float value,
             @JsonProperty("techLeadId") final int techLeadId,
             @JsonProperty("clientId") final int clientId,
             @JsonProperty("salesEmployeeId") final int salesEmployeeId,
             @JsonProperty("startDate") final Date startDate,
-            @JsonProperty("finishDate") final Date finishDate,
-            @JsonProperty("commissionRate") final float commissionRate)
+            @JsonProperty("finishDate") final Date finishDate)
     {
         this.name = name;
         this.value = value;
-        this.techleadId = techLeadId;
+        this.techLeadId = techLeadId;
         this.clientId = clientId;
         this.salesEmployeeId = salesEmployeeId;
         this.startDate = startDate;
         this.finishDate = finishDate;
-        this.commissionRate = commissionRate;
     }
 
     public String getName() {
@@ -53,11 +49,11 @@ public class ProjectRequest {
     }
 
     public int getTechLeadId() {
-        return techleadId;
+        return techLeadId;
     }
 
     public void setTechLeadId(final int techLeadId) {
-        this.techleadId = techleadId;
+        this.techLeadId = techLeadId;
     }
 
     public int getClientId() {
@@ -90,14 +86,6 @@ public class ProjectRequest {
 
     public void setFinishDate(final Date finishDate) {
         this.finishDate = finishDate;
-    }
-
-    public float getCommissionRate() {
-        return commissionRate;
-    }
-
-    public void setCommissionRate(final float commissionRate) {
-        this.commissionRate = commissionRate;
     }
 }
 

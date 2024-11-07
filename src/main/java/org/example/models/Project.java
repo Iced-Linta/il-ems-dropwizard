@@ -6,25 +6,23 @@ public class Project {
     private int projectId;
     private String name;
     private float value;
-    private int techleadId;
+    private int techLeadId;
     private int clientId;
     private int salesEmployeeId;
     private Date startDate;
     private Date finishDate;
-    private float commissionRate;
 
     public Project(final int projectId, final String name, final float value, final int techLeadId,
                    final int clientId, final int salesEmployeeId, final Date startDate,
-                   final Date finishDate, final float commissionRate) {
+                   final Date finishDate) {
         this.projectId = projectId;
         this.name = name;
         this.value = value;
-        this.techleadId = techLeadId;
+        this.techLeadId = techLeadId;
         this.clientId = clientId;
         this.salesEmployeeId = salesEmployeeId;
         this.startDate = startDate;
         this.finishDate = finishDate;
-        this.commissionRate = commissionRate;
     }
 
     public int getProjectId() {
@@ -89,13 +87,5 @@ public class Project {
 
     public void setFinishDate(final Date finishDate) {
         this.finishDate = finishDate;
-    }
-
-    public float getCommissionRate() {
-        return commissionRate;
-    }
-
-    public void setCommissionRate(final float commissionRate) {
-        this.commissionRate = commissionRate;
     }
 }

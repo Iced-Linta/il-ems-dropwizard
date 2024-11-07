@@ -42,7 +42,7 @@ public class ProjectController {
             final ProjectRequest project
     ) {
         try {
-            return Response.ok().entity(
+            return Response.status(Response.Status.CREATED).entity(
                     projectService.createProject(project)
             ).build();
         } catch (SQLException e) {

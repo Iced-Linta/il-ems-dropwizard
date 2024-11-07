@@ -21,8 +21,7 @@ public class ProjectDao {
         salesEmployeeId(5),
         startDate(6),
         finishDate(7),
-        commissionRate(8),
-        updateId(9);
+        updateId(8);
 
         private final int index;
         Indexes(final int index) {
@@ -51,8 +50,7 @@ public class ProjectDao {
                         resultSet.getInt("clientId"),
                         resultSet.getInt("salesEmployeeId"),
                         resultSet.getDate("startDate"),
-                        resultSet.getDate("finishDate"),
-                        resultSet.getFloat("commissionRate")
+                        resultSet.getDate("finishDate")
                 );
                 projects.add(project);
             }
@@ -78,8 +76,7 @@ public class ProjectDao {
                         resultSet.getInt("clientId"),
                         resultSet.getInt("salesEmployeeId"),
                         resultSet.getDate("startDate"),
-                        resultSet.getDate("finishDate"),
-                        resultSet.getFloat("commissionRate")
+                        resultSet.getDate("finishDate")
                 );
             }
         }
@@ -93,8 +90,8 @@ public class ProjectDao {
             String insertStatement = "INSERT INTO project"
                     + " (name,value,techLeadId,"
                     + " clientId,salesEmployeeId," +
-                    "startDate, finishDate, commissionRate)"
-                    + " VALUES(?,?,?,?,?,?,?,?);";
+                    "startDate, finishDate)"
+                    + " VALUES(?,?,?,?,?,?,?);";
             PreparedStatement st = c.prepareStatement(
                     insertStatement, Statement.RETURN_GENERATED_KEYS);
             st.setString(Indexes.name.getIndex(),
@@ -111,8 +108,6 @@ public class ProjectDao {
                     projectRequest.getStartDate());
             st.setDate(Indexes.finishDate.getIndex(),
                     projectRequest.getFinishDate());
-            st.setFloat(Indexes.commissionRate.getIndex(),
-                    projectRequest.getCommissionRate());
 
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
@@ -124,7 +119,7 @@ public class ProjectDao {
         return -1;
     }
 
-    public void updateSalesEmployee(
+    public void updateProject(
             final int id,
             final ProjectRequest projectRequest)
             throws SQLException {
@@ -137,7 +132,6 @@ public class ProjectDao {
                     "salesEmployeeId =?," +
                     "startDate=?," +
                     "finishDate=?," +
-                    "commissionRate=? " +
                     "WHERE projectId = ?;";
             PreparedStatement st = c.prepareStatement(updateStatement);
             st.setString(Indexes.name.getIndex(),
@@ -154,8 +148,6 @@ public class ProjectDao {
                     projectRequest.getStartDate());
             st.setDate(Indexes.finishDate.getIndex(),
                     projectRequest.getFinishDate());
-            st.setFloat(Indexes.commissionRate.getIndex(),
-                    projectRequest.getCommissionRate());
             st.setInt(Indexes.updateId.getIndex(), id);
 
             st.executeUpdate();
