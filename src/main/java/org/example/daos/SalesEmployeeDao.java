@@ -82,17 +82,17 @@ public class SalesEmployeeDao {
                     + " VALUES(?,?,?,?,?,?);";
             PreparedStatement st = c.prepareStatement(
                     insertStatement, Statement.RETURN_GENERATED_KEYS);
-            st.setString(Indexes.firstName.getIndex(),
+            st.setString(Indexes.FIRST_NAME.getIndex(),
                     salesEmployeeRequest.getFirstName());
-            st.setString(Indexes.lastName.getIndex(),
+            st.setString(Indexes.LAST_NAME.getIndex(),
                     salesEmployeeRequest.getLastName());
-            st.setDouble(Indexes.salary.getIndex(),
+            st.setDouble(Indexes.SALARY.getIndex(),
                     salesEmployeeRequest.getSalary());
-            st.setString(Indexes.bankAccount.getIndex(),
+            st.setString(Indexes.BANK_ACCOUNT.getIndex(),
                     salesEmployeeRequest.getBankAccountNo());
-            st.setDouble(Indexes.commissionRate.getIndex(),
+            st.setDouble(Indexes.COMMISSION_RATE.getIndex(),
                     salesEmployeeRequest.getCommissionRate());
-            st.setString(Indexes.nationalInsuranceNumber.getIndex(),
+            st.setString(Indexes.NATIONAL_INSURANCE_NUMBER.getIndex(),
                     salesEmployeeRequest.getNationalInsuranceNo());
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
@@ -118,19 +118,19 @@ public class SalesEmployeeDao {
                     "nationalInsuranceNumber=?" +
                     "WHERE salesEmployeeId = ?;";
             PreparedStatement st = c.prepareStatement(updateStatement);
-            st.setString(Indexes.firstName.getIndex(),
+            st.setString(Indexes.FIRST_NAME.getIndex(),
                     salesEmployeeRequest.getFirstName());
-            st.setString(Indexes.lastName.getIndex(),
+            st.setString(Indexes.LAST_NAME.getIndex(),
                     salesEmployeeRequest.getLastName());
-            st.setDouble(Indexes.salary.getIndex(),
+            st.setDouble(Indexes.SALARY.getIndex(),
                     salesEmployeeRequest.getSalary());
-            st.setString(Indexes.bankAccount.getIndex(),
+            st.setString(Indexes.BANK_ACCOUNT.getIndex(),
                     salesEmployeeRequest.getBankAccountNo());
-            st.setDouble(Indexes.commissionRate.getIndex(),
+            st.setDouble(Indexes.COMMISSION_RATE.getIndex(),
                     salesEmployeeRequest.getCommissionRate());
-            st.setString(Indexes.nationalInsuranceNumber.getIndex(),
+            st.setString(Indexes.NATIONAL_INSURANCE_NUMBER.getIndex(),
                     salesEmployeeRequest.getNationalInsuranceNo());
-            st.setInt(Indexes.updateId.getIndex(), id);
+            st.setInt(Indexes.UPDATE_ID.getIndex(), id);
 
             st.executeUpdate();
 
@@ -148,13 +148,13 @@ public class SalesEmployeeDao {
     }
 
     private enum Indexes {
-        firstName(1),
-        lastName(2),
-        salary(3),
-        bankAccount(4),
-        commissionRate(5),
-        nationalInsuranceNumber(6),
-        updateId(7);
+        FIRST_NAME(1),
+        LAST_NAME(2),
+        SALARY(3),
+        BANK_ACCOUNT(4),
+        COMMISSION_RATE(5),
+        NATIONAL_INSURANCE_NUMBER(6),
+        UPDATE_ID(7);
 
         private final int index;
 
