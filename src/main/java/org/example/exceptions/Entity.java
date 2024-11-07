@@ -1,10 +1,11 @@
 package org.example.exceptions;
 
 public enum Entity {
-    USER("User"),
-    SALES_EMPLOYEE("Sales Employee"),
     DELIVERY_EMPLOYEE("Delivery Employee"),
-    CLIENT("Client");
+    PROJECT("Project"),
+    SALES_EMPLOYEE("Sales Employee"),
+    CLIENT("Client"),
+    USER("User");
 
     private final String entity;
 
@@ -14,8 +15,7 @@ public enum Entity {
 
     public String getName() {
         return this.name();
-    }
-
+}
     public String getEntity() {
         return this.entity;
     }
