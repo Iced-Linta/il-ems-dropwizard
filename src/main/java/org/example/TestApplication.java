@@ -11,14 +11,17 @@ import io.jsonwebtoken.Jwts;
 import org.example.auth.JwtAuthenticator;
 import org.example.auth.RoleAuthorisor;
 import org.example.controllers.AuthController;
+import org.example.controllers.SalesEmployeeController;
 import org.example.controllers.DeliveryEmployeeController;
 import org.example.controllers.TestController;
 import org.example.daos.AuthDao;
 import org.example.daos.DeliveryEmployeeDao;
+import org.example.daos.SalesEmployeeDao;
 import org.example.daos.TestDao;
 import org.example.models.JwtToken;
 import org.example.services.AuthService;
 import org.example.services.DeliveryEmployeeService;
+import org.example.services.SalesEmployeeService;
 import org.example.services.TestService;
 import org.example.validators.DeliveryEmployeeValidator;
 
@@ -54,6 +57,14 @@ public class TestApplication extends Application<TestConfiguration> {
         environment.jersey()
                 .register(new TestController(new TestService(new TestDao())));
 
+        environment.jersey()
+                .register(
+                        new SalesEmployeeController(
+                                new SalesEmployeeService(
+                                        new SalesEmployeeDao()
+                                )
+                        )
+                );
         environment.jersey().register(new DeliveryEmployeeController(
                 new DeliveryEmployeeService(new DeliveryEmployeeDao(),
                         new DeliveryEmployeeValidator())));
