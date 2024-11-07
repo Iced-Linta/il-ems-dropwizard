@@ -23,7 +23,7 @@ public class ClientDao {
 
             while (resultSet.next()) {
                 Client client = new Client(
-                        resultSet.getInt("clientID"),
+                        resultSet.getInt("clientId"),
                         resultSet.getString("name")
                 );
 
@@ -45,7 +45,7 @@ public class ClientDao {
 
             if (resultSet.next()) {
                 return new Client(
-                        resultSet.getInt("clientID"),
+                        resultSet.getInt("clientId"),
                         resultSet.getString("name")
                 );
             }
