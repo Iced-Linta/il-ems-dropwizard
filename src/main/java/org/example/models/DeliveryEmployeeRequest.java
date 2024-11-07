@@ -13,7 +13,8 @@ public class DeliveryEmployeeRequest {
     public DeliveryEmployeeRequest(
             @JsonProperty("name") final String name,
             @JsonProperty("salary") final Double salary,
-            @JsonProperty("bankAccountNumber") final String bankAccountNumber,
+            @JsonProperty("bankAccountNumber")
+            final String bankAccountNumber,
             @JsonProperty("nationalInsuranceNumber")
             final String nationalInsuranceNumber
     ) {
