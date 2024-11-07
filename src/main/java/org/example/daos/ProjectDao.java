@@ -14,14 +14,14 @@ import java.util.List;
 
 public class ProjectDao {
     private enum Indexes {
-        name(1),
-        value(2),
-        techLeadId(3),
-        clientId(4),
-        salesEmployeeId(5),
-        startDate(6),
-        finishDate(7),
-        updateId(8);
+        NAME(1),
+        VALUE(2),
+        TECHLEADID(3),
+        CLIENTID(4),
+        SALESEMPLOYEEID(5),
+        STRATDATE(6),
+        FINISHDATE(7),
+        UPDATEID(8);
 
         private final int index;
         Indexes(final int index) {
@@ -94,19 +94,19 @@ public class ProjectDao {
                     + " VALUES(?,?,?,?,?,?,?);";
             PreparedStatement st = c.prepareStatement(
                     insertStatement, Statement.RETURN_GENERATED_KEYS);
-            st.setString(Indexes.name.getIndex(),
+            st.setString(Indexes.NAME.getIndex(),
                     projectRequest.getName());
-            st.setFloat(Indexes.value.getIndex(),
+            st.setFloat(Indexes.VALUE.getIndex(),
                     projectRequest.getValue());
-            st.setInt(Indexes.techLeadId.getIndex(),
+            st.setInt(Indexes.TECHLEADID.getIndex(),
                     projectRequest.getTechLeadId());
-            st.setInt(Indexes.clientId.getIndex(),
+            st.setInt(Indexes.CLIENTID.getIndex(),
                     projectRequest.getClientId());
-            st.setInt(Indexes.salesEmployeeId.getIndex(),
+            st.setInt(Indexes.SALESEMPLOYEEID.getIndex(),
                     projectRequest.getSalesEmployeeId());
-            st.setDate(Indexes.startDate.getIndex(),
+            st.setDate(Indexes.STRATDATE.getIndex(),
                     projectRequest.getStartDate());
-            st.setDate(Indexes.finishDate.getIndex(),
+            st.setDate(Indexes.FINISHDATE.getIndex(),
                     projectRequest.getFinishDate());
 
             st.executeUpdate();
@@ -134,21 +134,21 @@ public class ProjectDao {
                     "finishDate=?," +
                     "WHERE projectId = ?;";
             PreparedStatement st = c.prepareStatement(updateStatement);
-            st.setString(Indexes.name.getIndex(),
+            st.setString(Indexes.NAME.getIndex(),
                     projectRequest.getName());
-            st.setFloat(Indexes.value.getIndex(),
+            st.setFloat(Indexes.VALUE.getIndex(),
                     projectRequest.getValue());
-            st.setInt(Indexes.techLeadId.getIndex(),
+            st.setInt(Indexes.TECHLEADID.getIndex(),
                     projectRequest.getTechLeadId());
-            st.setInt(Indexes.clientId.getIndex(),
+            st.setInt(Indexes.CLIENTID.getIndex(),
                     projectRequest.getClientId());
-            st.setInt(Indexes.salesEmployeeId.getIndex(),
+            st.setInt(Indexes.SALESEMPLOYEEID.getIndex(),
                     projectRequest.getSalesEmployeeId());
-            st.setDate(Indexes.startDate.getIndex(),
+            st.setDate(Indexes.STRATDATE.getIndex(),
                     projectRequest.getStartDate());
-            st.setDate(Indexes.finishDate.getIndex(),
+            st.setDate(Indexes.FINISHDATE.getIndex(),
                     projectRequest.getFinishDate());
-            st.setInt(Indexes.updateId.getIndex(), id);
+            st.setInt(Indexes.UPDATEID.getIndex(), id);
 
             st.executeUpdate();
 
