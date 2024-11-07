@@ -6,6 +6,8 @@ import io.swagger.annotations.SecurityDefinition;
 import io.swagger.annotations.SwaggerDefinition;
 import org.example.exceptions.FailedToCreateException;
 import org.example.exceptions.InvalidException;
+import org.example.models.CheckMfaRequest;
+import org.example.models.IssueMfaRequest;
 import org.example.models.LoginRequest;
 import org.example.models.UserRequest;
 import org.example.services.AuthService;
@@ -36,6 +38,27 @@ public class AuthController {
 
     public AuthController(final AuthService authService) {
         this.authService = authService;
+    }
+
+    @POST
+    @Path("/issueMfa")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response issueMfa(final IssueMfaRequest issueMfaRequest) {
+        return Response.status(Response.Status.CREATED).entity(
+                authService.issueMfa(issueMfaRequest)
+        ).build();
+    }
+
+    @POST
+    @Path("/checkMfa")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response checkMfa(final CheckMfaRequest checkMfaRequest) {
+        try {
+            authService.checkMfa(checkMfaRequest);
+            return Response.ok().build();
+        } catch (InvalidException e) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
     }
 
     @POST
