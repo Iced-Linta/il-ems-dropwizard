@@ -25,7 +25,8 @@ public class AuthDao {
                 return new User(
                         resultSet.getString("username"),
                         resultSet.getString("password"),
-                        resultSet.getInt("roleId")
+                        resultSet.getInt("roleId"),
+                        resultSet.getString("phone")
                 );
             }
         }

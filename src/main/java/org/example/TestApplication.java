@@ -1,5 +1,6 @@
 package org.example;
 
+import com.twilio.Twilio;
 import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.oauth.OAuthCredentialAuthFilter;
@@ -50,6 +51,8 @@ public class TestApplication extends Application<TestConfiguration> {
     @Override
     public void run(final TestConfiguration configuration,
                     final Environment environment) {
+        Twilio.init(System.getenv("TWILIO_SID"), System.getenv("TWILIO_TOKEN"));
+
         SecretKey jwtKey = Jwts.SIG.HS256.key().build();
 
         environment.jersey().register(

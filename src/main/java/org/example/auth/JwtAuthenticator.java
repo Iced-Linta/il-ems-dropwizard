@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.example.models.JwtToken;
+import org.example.models.User;
 import org.example.models.UserRole;
 
 import javax.crypto.SecretKey;
@@ -30,7 +31,14 @@ public class JwtAuthenticator implements Authenticator<String, JwtToken> {
                     .getPayload()
                     .get("Role", Integer.class);
 
-            JwtToken jwtToken = new JwtToken(new UserRole(roleId));
+            User user = Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .get("User", User.class);
+
+            JwtToken jwtToken = new JwtToken(new UserRole(roleId), user);
 
             return Optional.of(jwtToken);
         } catch (Exception e) {

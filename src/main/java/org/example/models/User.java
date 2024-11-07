@@ -4,14 +4,17 @@ public class User {
     private String username;
     private String password;
     private int roleId;
+    private String phone;
 
     public User(
             final String username,
             final String password,
-            final int roleId) {
+            final int roleId,
+            final String phone) {
         this.username = username;
         this.password = password;
         this.roleId = roleId;
+        this.phone = phone;
     }
 
     public String getUsername() {
@@ -36,5 +39,13 @@ public class User {
 
     public void setRoleId(final int roleId) {
         this.roleId = roleId;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(final String phone) {
+        this.phone = phone;
     }
 }
