@@ -1,9 +1,9 @@
 package org.example.models;
 
 public class User {
-    String username;
-    String password;
-    int roleId;
+    private String username;
+    private String password;
+    private int roleId;
 
     public User(
             final String username,

@@ -59,7 +59,7 @@ public class AuthController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(final UserRequest userRequest) {
         try {
-            return Response.ok().entity(
+            return Response.status(Response.Status.CREATED).entity(
                     authService.register(userRequest)
             ).build();
         } catch (SQLException | FailedToCreateException e) {

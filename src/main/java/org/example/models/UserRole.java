@@ -3,11 +3,11 @@ package org.example.models;
 import java.util.Map;
 
 public class UserRole {
-    public static final String USER = "User";
-    public static final String HR = "HR";
-    public static final String SALES = "Sales";
-    public static final String MANAGEMENT = "Management";
-    int roleId;
+    private static final String USER = "User";
+    private static final String HR = "HR";
+    private static final String SALES = "Sales";
+    private static final String MANAGEMENT = "Management";
+    private int roleId;
 
     private static final Map<Integer, String> rolesMap = Map.of(
             0, USER,
@@ -29,6 +29,9 @@ public class UserRole {
     }
 
     public String getRoleName() {
+        if (!rolesMap.containsKey(roleId)) {
+            return "Guest";
+        }
         return rolesMap.get(getRoleId());
     }
 }

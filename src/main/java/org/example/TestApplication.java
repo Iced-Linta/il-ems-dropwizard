@@ -22,6 +22,7 @@ import org.example.services.DeliveryEmployeeService;
 import org.example.services.TestService;
 import org.example.validators.DeliveryEmployeeValidator;
 
+import javax.crypto.SecretKey;
 import java.security.Key;
 
 public class TestApplication extends Application<TestConfiguration> {
@@ -38,7 +39,7 @@ public class TestApplication extends Application<TestConfiguration> {
     @Override
     public void run(final TestConfiguration configuration,
                     final Environment environment) {
-        Key jwtKey = Jwts.SIG.HS256.key().build();
+        SecretKey jwtKey = Jwts.SIG.HS256.key().build();
 
         environment.jersey().register(
                 new AuthDynamicFeature(

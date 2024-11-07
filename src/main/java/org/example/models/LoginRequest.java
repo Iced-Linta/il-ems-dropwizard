@@ -3,6 +3,8 @@ package org.example.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import static org.example.auth.Hasher.getHash;
+
 public class LoginRequest {
     String username;
     String password;
@@ -13,7 +15,7 @@ public class LoginRequest {
             @JsonProperty("password") final String password
     ) {
         this.username = username;
-        this.password = password;
+        this.password = getHash(password);
     }
 
     public String getUsername() {
