@@ -13,29 +13,12 @@ import java.util.List;
 
 public class SalesEmployeeDao {
 
-    private enum Indexes {
-        firstName(1),
-        lastName(2),
-        salary(3),
-        bankAccount(4),
-        commissionRate(5),
-        nationalInsuranceNumber(6),
-        updateId(7);
-
-        private final int index;
-        Indexes(final int index) {
-            this.index = index;
-        }
-        public int getIndex() {
-            return this.index;
-        }
-    }
-
     public List<SalesEmployee> getSalesEmployees() throws SQLException {
         List<SalesEmployee> salesEmployees = new ArrayList<>();
 
         try (Connection connection = DatabaseConnector.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM salesEmployees;");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM salesEmployees;");
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -161,6 +144,26 @@ public class SalesEmployeeDao {
             PreparedStatement st = c.prepareStatement(deleteStatement);
             st.setInt(1, id);
             st.executeUpdate();
+        }
+    }
+
+    private enum Indexes {
+        firstName(1),
+        lastName(2),
+        salary(3),
+        bankAccount(4),
+        commissionRate(5),
+        nationalInsuranceNumber(6),
+        updateId(7);
+
+        private final int index;
+
+        Indexes(final int index) {
+            this.index = index;
+        }
+
+        public int getIndex() {
+            return this.index;
         }
     }
 }

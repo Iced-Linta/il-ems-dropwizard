@@ -13,7 +13,8 @@ public enum Entity {
 
     public String getName() {
         return this.name();
-}
+    }
+
     public String getEntity() {
         return this.entity;
     }
