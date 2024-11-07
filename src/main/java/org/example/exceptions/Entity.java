@@ -1,7 +1,8 @@
 package org.example.exceptions;
 
 public enum Entity {
-    DELIVERY_EMPLOYEE("Delivery Employee");
+    DELIVERY_EMPLOYEE("Delivery Employee"),
+    USER("User");
 
     private final String entity;
 
