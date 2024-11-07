@@ -49,12 +49,12 @@ public class Project {
         this.value = value;
     }
 
-    public int getTechleadId() {
-        return techleadId;
+    public int getTechLeadId() {
+        return techLeadId;
     }
 
-    public void setTechleadId(final int techleadId) {
-        this.techleadId = techleadId;
+    public void setTechLeadId(final int techleadId) {
+        this.techLeadId = techleadId;
     }
 
     public int getClientId() {

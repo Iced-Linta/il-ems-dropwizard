@@ -18,7 +18,7 @@ public class ProjectDao {
         TECHLEADID(3),
         CLIENTID(4),
         SALESEMPLOYEEID(5),
-        STRATDATE(6),
+        STARTDATE(6),
         FINISHDATE(7),
         UPDATEID(8);
 
@@ -86,11 +86,7 @@ public class ProjectDao {
     )
             throws SQLException {
         try (Connection c = DatabaseConnector.getConnection()) {
-            String insertStatement = "INSERT INTO project"
-                    + " (name,value,techLeadId,"
-                    + " clientId,salesEmployeeId," +
-                    "startDate, finishDate)"
-                    + " VALUES(?,?,?,?,?,?,?);";
+            String insertStatement = "INSERT INTO project (name,value,techLeadId,clientId,salesEmployeeId,startDate,finishDate) VALUES('?',?,?,?,?,?,?);";
             PreparedStatement st = c.prepareStatement(
                     insertStatement, Statement.RETURN_GENERATED_KEYS);
             st.setString(Indexes.NAME.getIndex(),
@@ -103,7 +99,7 @@ public class ProjectDao {
                     projectRequest.getClientId());
             st.setInt(Indexes.SALESEMPLOYEEID.getIndex(),
                     projectRequest.getSalesEmployeeId());
-            st.setDate(Indexes.STRATDATE.getIndex(),
+            st.setDate(Indexes.STARTDATE.getIndex(),
                     projectRequest.getStartDate());
             st.setDate(Indexes.FINISHDATE.getIndex(),
                     projectRequest.getFinishDate());
@@ -143,7 +139,7 @@ public class ProjectDao {
                     projectRequest.getClientId());
             st.setInt(Indexes.SALESEMPLOYEEID.getIndex(),
                     projectRequest.getSalesEmployeeId());
-            st.setDate(Indexes.STRATDATE.getIndex(),
+            st.setDate(Indexes.STARTDATE.getIndex(),
                     projectRequest.getStartDate());
             st.setDate(Indexes.FINISHDATE.getIndex(),
                     projectRequest.getFinishDate());
