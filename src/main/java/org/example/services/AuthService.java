@@ -29,7 +29,7 @@ public class AuthService {
     public String issueMfa(final IssueMfaRequest issueMfaRequest) {
         Verification verification =
                 Verification.creator(
-                        "VAd1044d715dacbc3def3d61568ef124e3",
+                        "VA8127e7e13339fafa3a72f0bc313b86d7",
                         issueMfaRequest.getPhone(),
                         "sms"
                 ).create();
@@ -39,7 +39,7 @@ public class AuthService {
     public void checkMfa(final CheckMfaRequest checkMfaRequest)
             throws InvalidException {
         VerificationCheck verificationCheck =
-                VerificationCheck.creator("VAd1044d715dacbc3def3d61568ef124e3")
+                VerificationCheck.creator("VA8127e7e13339fafa3a72f0bc313b86d7")
                         .setVerificationSid(checkMfaRequest.getSid())
                         .setCode(checkMfaRequest.getCode())
                         .create();
